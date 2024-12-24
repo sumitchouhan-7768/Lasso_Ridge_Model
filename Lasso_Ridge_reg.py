@@ -1,0 +1,76 @@
+import pandas as pd 
+import numpy as np 
+import seaborn as sns  # type: ignore
+import matplotlib.pyplot as plt  
+from sklearn import preprocessing 
+from sklearn.preprocessing import PolynomialFeatures 
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+df = pd.read_csv(r"C:\Users\HP\OneDrive\Desktop\NIT All-Projects\Lasso_Ridge.py\car-mpg.csv")
+
+# data cleaning 
+data = data.drop(['car_name'], axis = 1) # type: ignore
+data['origin'] = data['origin'].replace({1:'America',2:'Europe',3:'Asia'})
+data.get_dummies(data,columns = ['origin'])
+data = data.replace('?',np.nan)
+data = data.apply(lambda x: x.fillna(x.median()),axis = 0)
+
+#Model Building
+X = df.drop(['mpg'],axis = 1) #independent variable
+Y = df[['mpg']] #dependent variable
+
+#Scaling Data
+X_s = preprocessing.scale(X)
+x_s = pd.DataFrame(X_s,columns = X.columns)
+
+Y_s = preprocessing.scale(Y)
+Y_s = pd.DataFrame(Y_s, columns = Y.columns)
+
+#Splitting Data into Train , Test sets
+
+X_train,X_test,Y_train,Y_test = train_test_split(X_s,Y_s, test_size=0.30, random_state = 1)
+X_train.shape
+
+#Fitting of SLR and finding coeff
+regression_model = LinearRegression()
+regression_model.fit(X_train,Y_train)
+
+for idx, col_name in enumerate(x_train.columns):
+    print('The coefficient for {} is {}'.format(col_name, regression_model,coef_[0][idx]))
+
+intercept = regression_model.intercept_[0]
+print('The intercept is {}'.format(intercept))
+
+# To reduce magnitude of coeff  using Ridge
+
+ridge_model = Ridge(alpha = 0.3)
+ridge_model.fit(X_train,Y_train)
+
+print('Ridge model coef: {}'.format(ridge_model.coef_))
+
+# To reduce magnitude of coef using Lasso
+lasso_model = Lasso(alpha =0.1)
+lasso_model.fit(X_trin,Y_train)
+
+print('Lasso model coef: {}'.format(lasso_model.coef_))
+
+# Score Comparison
+#SLR
+print(regression_model.score(X_train,Y_train))
+print(regression_model.score(X_test,Y_test))
+
+print("*****************************")
+#Ridge
+print(ridge_model.score(X_train,Y_train))
+print(ridge_model.score(X_test,Y_test))
+
+print("******************************")
+#Lasso
+print(lasso_model.score(X_train,Y_train))
+print(lasso_model.score(X_test,Y_test))
+
+#Model Paremeter Tuning
+data_train_test = pd.concat([X_train,Y_train],axis = 1)
+data_train_test.head()
