@@ -74,3 +74,28 @@ print(lasso_model.score(X_test,Y_test))
 #Model Paremeter Tuning
 data_train_test = pd.concat([X_train,Y_train],axis = 1)
 data_train_test.head()
+
+import statsmodels.formula.api as smf
+ols1 = smf.ols(formula = 'mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_america+origin_europe+origin_asia', data = data_train_test).fit()
+ols1.params
+print(ols1.summary())
+#Lets check Sum of Squared Errors (SSE) by predicting value of y for test cases and subtracting from the actual y for the test cases
+mse  = np.mean((regression_model.predict(X_test)-y_test)**2)
+import math
+rmse = math.sqrt(mse)
+print('Root Mean Squared Error: {}'.format(rmse))
+
+#Lets check the residuals for some of these predictor.
+fig = plt.figure(figsize=(10,8))
+sns.residplot(x= X_test['hp'], y= y_test['mpg'], color='green', lowess=True )
+
+
+fig = plt.figure(figsize=(10,8))
+sns.residplot(x= X_test['acc'], y= y_test['mpg'], color='green', lowess=True )
+# predict mileage (mpg) for a set of attributes not in the training or test set
+y_pred = regression_model.predict(X_test)
+plt.scatter(y_test['mpg'], y_pred)
+
+
+
+
