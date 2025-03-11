@@ -28,7 +28,7 @@ jobs:
     
     - name: Run script
       run: |
-        python your_script.py  # Change to the actual script filename
+        python Lasso_Ridge_reg.py  
 
     - name: Run Pytest
       run: |
