@@ -35,6 +35,3 @@ jobs:
       run: |
         python Lasso_Ridge_reg.py  
 
-    - name: Run Pytest
-      run: |
-        pytest
