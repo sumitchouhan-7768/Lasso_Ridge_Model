@@ -38,6 +38,8 @@ X_train.shape
 regression_model = LinearRegression()
 regression_model.fit(X_train,Y_train)
 
+X_train = pd.DataFrame(X_train, columns=X.columns) #Converting X_train back to a DataFrame
+
 for idx, col_name in enumerate(X_train.columns):
     print('The coefficient for {} is {}'.format(col_name, regression_model,coef_[0][idx]))
 
