@@ -6,6 +6,7 @@ from sklearn import preprocessing
 from sklearn.preprocessing import PolynomialFeatures 
 from sklearn.model_selection import train_test_split 
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.metrics import r2_score
 
 df = pd.read_csv(r"car_mpg.csv")
