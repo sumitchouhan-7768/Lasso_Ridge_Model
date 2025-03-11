@@ -57,7 +57,7 @@ print('Ridge model coef: {}'.format(ridge_model.coef_))
 
 # To reduce magnitude of coef using Lasso
 lasso_model = Lasso(alpha =0.1)
-lasso_model.fit(X_trin,Y_train)
+lasso_model.fit(X_train,Y_train)
 
 print('Lasso model coef: {}'.format(lasso_model.coef_))
 
