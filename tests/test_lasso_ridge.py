@@ -33,7 +33,8 @@ def test_lasso_regression():
     model.fit(X_train, Y_train)
     predictions = model.predict(X_test)
 
-    assert predictions.shape == Y_test.ravel().shape, "Predictions should match Y_test shape"
+    # Convert Y_test to a NumPy array and flatten it
+    assert predictions.shape == Y_test.to_numpy().ravel().shape, "Predictions should match Y_test shape"
     assert isinstance(predictions, np.ndarray), "Predictions should be a NumPy array"
 
 # Test 4: Check R² score is within a reasonable range
