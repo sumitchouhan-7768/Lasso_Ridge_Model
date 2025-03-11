@@ -15,6 +15,7 @@ df = df.drop(['car_name'], axis = 1) # type: ignore
 df['origin'] = df['origin'].replace({1:'America',2:'Europe',3:'Asia'})
 df = pd.get_dummies(df,columns = ['origin'])
 df = df.replace('?',np.nan)
+df = df.apply(pd.to_numeric, errors='coerce')  # Convert all applicable columns to numeric
 df = df.apply(lambda x: x.fillna(x.median()),axis = 0)
 
 #Model Building
