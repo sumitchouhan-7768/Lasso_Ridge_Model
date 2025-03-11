@@ -81,7 +81,7 @@ data_train_test = pd.concat([X_train,Y_train],axis = 1)
 data_train_test.head()
 
 import statsmodels.formula.api as smf
-ols1 = smf.ols(formula='mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_america+origin_europe+origin_asia', 
+ols1 = smf.ols(formula = 'mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_America+origin_Europe+origin_Asia', 
                data=data_train_test).fit()
 
 ols1.params
