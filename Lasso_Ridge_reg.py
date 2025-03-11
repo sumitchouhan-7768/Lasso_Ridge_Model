@@ -19,6 +19,9 @@ df = df.replace('?',np.nan)
 df = df.apply(pd.to_numeric, errors='coerce')  # Convert all applicable columns to numeric
 df = df.apply(lambda x: x.fillna(x.median()),axis = 0)
 
+X_test = pd.DataFrame(X_test, columns=feature_names)  # feature_names should match training columns
+Y_test = pd.DataFrame(Y_test, columns=['mpg'])
+
 #Model Building
 X = df.drop(['mpg'],axis = 1) #independent variable
 Y = df[['mpg']] #dependent variable
