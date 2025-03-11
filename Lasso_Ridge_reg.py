@@ -92,7 +92,7 @@ import math
 rmse = math.sqrt(mse)
 print('Root Mean Squared Error: {}'.format(rmse))
 
-X_test = pd.DataFrame(X_test, columns=['hp'])  # feature_names should match training columns
+X_test = pd.DataFrame(X_test, columns=X_train.columns)  # feature_names should match training columns
 Y_test = pd.DataFrame(Y_test, columns=['mpg'])
 
 #Lets check the residuals for some of these predictor.
