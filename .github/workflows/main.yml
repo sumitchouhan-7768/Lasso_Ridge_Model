@@ -30,6 +30,11 @@ jobs:
       run: |
         python Lasso_Ridge_reg.py  
 
+    - name: Fix numpy and statsmodels compatibility
+     run: |
+       pip install --upgrade pip
+       pip install --upgrade numpy statsmodels
+
     - name: Run Pytest
       run: |
         pytest
