@@ -11,11 +11,11 @@ from sklearn.metrics import r2_score
 df = pd.read_csv(r"car_mpg.csv")
 
 # data cleaning 
-data = data.drop(['car_name'], axis = 1) # type: ignore
-data['origin'] = data['origin'].replace({1:'America',2:'Europe',3:'Asia'})
-data.get_dummies(data,columns = ['origin'])
-data = data.replace('?',np.nan)
-data = data.apply(lambda x: x.fillna(x.median()),axis = 0)
+df = df.drop(['car_name'], axis = 1) # type: ignore
+df['origin'] = data['origin'].replace({1:'America',2:'Europe',3:'Asia'})
+df.get_dummies(data,columns = ['origin'])
+df = df.replace('?',np.nan)
+df = df.apply(lambda x: x.fillna(x.median()),axis = 0)
 
 #Model Building
 X = df.drop(['mpg'],axis = 1) #independent variable
@@ -76,7 +76,7 @@ data_train_test = pd.concat([X_train,Y_train],axis = 1)
 data_train_test.head()
 
 import statsmodels.formula.api as smf
-ols1 = smf.ols(formula = 'mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_america+origin_europe+origin_asia', data = data_train_test).fit()
+ols1 = smf.ols(formula = 'mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_america+origin_europe+origin_asia', df = data_train_test).fit()
 ols1.params
 print(ols1.summary())
 #Lets check Sum of Squared Errors (SSE) by predicting value of y for test cases and subtracting from the actual y for the test cases
