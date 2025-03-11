@@ -25,15 +25,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
-    - name: Run script
-      run: |
-        python Lasso_Ridge_reg.py  
 
     - name: Fix numpy and statsmodels compatibility
      run: |
        pip install --upgrade pip
        pip install --upgrade numpy statsmodels
+       
+    - name: Run script
+      run: |
+        python Lasso_Ridge_reg.py  
 
     - name: Run Pytest
       run: |
