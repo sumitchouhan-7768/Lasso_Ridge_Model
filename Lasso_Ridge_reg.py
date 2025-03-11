@@ -12,8 +12,8 @@ df = pd.read_csv(r"car_mpg.csv")
 
 # data cleaning 
 df = df.drop(['car_name'], axis = 1) # type: ignore
-df['origin'] = data['origin'].replace({1:'America',2:'Europe',3:'Asia'})
-df.get_dummies(data,columns = ['origin'])
+df['origin'] = df['origin'].replace({1:'America',2:'Europe',3:'Asia'})
+df.get_dummies(dg,columns = ['origin'])
 df = df.replace('?',np.nan)
 df = df.apply(lambda x: x.fillna(x.median()),axis = 0)
 
