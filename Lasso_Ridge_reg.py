@@ -40,8 +40,9 @@ regression_model.fit(X_train,Y_train)
 
 X_train = pd.DataFrame(X_train, columns=X.columns) #Converting X_train back to a DataFrame
 
-for idx, col_name in enumerate(X_train.columns):
-    print('The coefficient for {} is {}'.format(col_name, regression_model,coef_[0][idx]))
+for idx, col_name in enumerate(X_train.columns):  
+    print('The coefficient for {} is {}'.format(col_name, regression_model.coef_[0][idx]))
+
 
 intercept = regression_model.intercept_[0]
 print('The intercept is {}'.format(intercept))
