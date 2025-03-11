@@ -81,7 +81,9 @@ data_train_test = pd.concat([X_train,Y_train],axis = 1)
 data_train_test.head()
 
 import statsmodels.formula.api as smf
-ols1 = smf.ols(formula = 'mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_america+origin_europe+origin_asia', df = data_train_test).fit()
+ols1 = smf.ols(formula='mpg ~ cyl+disp+hp+wt+acc+yr+car_type+origin_america+origin_europe+origin_asia', 
+               data=data_train_test).fit()
+
 ols1.params
 print(ols1.summary())
 #Lets check Sum of Squared Errors (SSE) by predicting value of y for test cases and subtracting from the actual y for the test cases
