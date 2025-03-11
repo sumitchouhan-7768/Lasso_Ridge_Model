@@ -97,11 +97,11 @@ Y_test = pd.DataFrame(Y_test, columns=['mpg'])
 
 #Lets check the residuals for some of these predictor.
 fig = plt.figure(figsize=(10,8))
-sns.residplot(x= X_test['hp'], y= Y_test['mpg'], color='green', lowess=True )
+sns.residplot(x= X_test['hp'], y= Y_test['mpg'].values.flatten(), color='green', lowess=True )
 
 
 fig = plt.figure(figsize=(10,8))
-sns.residplot(x= X_test['acc'], y= Y_test['mpg'], color='green', lowess=True )
+sns.residplot(x= X_test['acc'], y= Y_test['mpg'].values.flatten(), color='green', lowess=True )
 # predict mileage (mpg) for a set of attributes not in the training or test set
 y_pred = regression_model.predict(X_test)
 plt.scatter(Y_test['mpg'], y_pred)
