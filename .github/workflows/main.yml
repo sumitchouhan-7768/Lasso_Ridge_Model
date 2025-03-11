@@ -34,4 +34,7 @@ jobs:
     - name: Run script
       run: |
         python Lasso_Ridge_reg.py  
-
+    - name: Run pytest
+      run: |
+        pytest tests/ -v
+       
