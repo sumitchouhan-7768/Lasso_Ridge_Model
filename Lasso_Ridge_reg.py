@@ -19,9 +19,6 @@ df = df.replace('?',np.nan)
 df = df.apply(pd.to_numeric, errors='coerce')  # Convert all applicable columns to numeric
 df = df.apply(lambda x: x.fillna(x.median()),axis = 0)
 
-X_test = pd.DataFrame(X_test, columns=['hp'])  # feature_names should match training columns
-Y_test = pd.DataFrame(Y_test, columns=['mpg'])
-
 #Model Building
 X = df.drop(['mpg'],axis = 1) #independent variable
 Y = df[['mpg']] #dependent variable
@@ -94,6 +91,9 @@ mse  = np.mean((regression_model.predict(X_test)-Y_test)**2)
 import math
 rmse = math.sqrt(mse)
 print('Root Mean Squared Error: {}'.format(rmse))
+
+X_test = pd.DataFrame(X_test, columns=['hp'])  # feature_names should match training columns
+Y_test = pd.DataFrame(Y_test, columns=['mpg'])
 
 #Lets check the residuals for some of these predictor.
 fig = plt.figure(figsize=(10,8))
